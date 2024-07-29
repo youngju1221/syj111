@@ -59,7 +59,6 @@ ALTER USER c##homework quota 1024M ON users;
 -- 구문 : DROP USER 사용자계정 [CASCADE];
 
 CREATE USER c##ttt IDENTIFIED BY ttt;
-
 DROP USER c##ttt;
 DROP USER c##ttt CASCADE;
 
@@ -71,4 +70,17 @@ DROP USER c##ttt CASCADE;
 -- 구문 : ALTER USER 사용자계정 IDENTIFIED BY 암호 ACCOUNT UNLOCK;
 
 -- 사용자계정 잠그기 (LOCK)
-ALTER USER c##student IDENTIFIED BY student ACCOUNT LOCK;
+ALTER USER c##student IDENTIFIED BY student ACCOUNT LOCK; -- 잠금
+ALTER USER c##student IDENTIFIED BY student ACCOUNT UNLOCK; -- 해제
+
+-- 암호 변경시
+-- ALTER USER 사용자계정 IDENTIFIED BY 바꿀암호;
+
+CREATE USER c##ttt IDENTIFIED BY ttt;
+GRANT CONNECT TO c##ttt
+CONN c##ttt/ttt;
+
+ALTER USER c##ttt IDENTIFIED BY s123; -- 암호 변경
+CONN c##ttt/ttt; -- 접속 에러 확인
+DROP USER c##ttt
+
